@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+ERROR: Out of bounds address specified in datafile. Read terminated.
+Instruction =          x
+$stop called at time : 21 ns : File "C:/Users/arun/Core_Dump/Core_Dump.srcs/sim_1/new/IF_TB.sv" Line 37

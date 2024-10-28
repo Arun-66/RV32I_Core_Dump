@@ -1,0 +1,36 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 26.10.2024 14:39:16
+// Design Name: 
+// Module Name: EX_Stage
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module EX_Stage#(parameter Size = 32)(
+    input [Size-1:0] rs1_data,rs2_data,EX_Imm,
+    input ALU_Src,Branch_Control,
+    input [3:0]ALU_Control,
+    output Branch_out,
+    output [Size-1:0]ALU_out
+    );
+wire [Size-1:0]data2_to_ALU;
+wire flag;
+MUX #(32) Imm_Sel(rs2_data,EX_Imm,ALU_Src,data2_to_ALU);
+ALU #(32) alu(rs1_data,data2_to_ALU,ALU_Control,ALU_out,flag);
+assign Branch_out = Branch_Control & flag;
+
+endmodule

@@ -1,0 +1,5 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/arun/Core_Dump/Core_Dump.sim/sim_1/synth/func/xsim/IF_TB_func_synth.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Inst_Mem
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/arun/Core_Dump/Core_Dump.srcs/sim_1/new/IF_TB.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module IF_TB

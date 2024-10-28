@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"IF_TB_func_synth.v" \
+
+sv xil_defaultlib  \
+"../../../../../Core_Dump.srcs/sim_1/new/IF_TB.sv" \
+
+# Do not sort compile order
+nosort
