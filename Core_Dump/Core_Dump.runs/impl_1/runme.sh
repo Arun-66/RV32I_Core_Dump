@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/arun/Desktop/Projects/RV32I_Core/RV32I_Core_Dump/Core_Dump/Core_Dump.runs/synth_1'
+HD_PWD='C:/Users/arun/Desktop/Projects/RV32I_Core/RV32I_Core_Dump/Core_Dump/Core_Dump.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -41,4 +41,8 @@ EAStep()
      fi
 }
 
-EAStep vivado -log Core.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Core.tcl
+# pre-commands:
+/bin/touch .init_design.begin.rst
+EAStep vivado -log Core.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Core.tcl -notrace
+
+

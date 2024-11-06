@@ -1,11 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1730131633" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/Inst_Mem.dcp">
+<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1730131905">
+  <File Type="ROUTE-PWR" Name="Core_power_routed.rpt"/>
   <File Type="PA-TCL" Name="Core.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="Core_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="Core_reports.tcl"/>
-  <File Type="RDS-RDS" Name="Core.vds"/>
-  <File Type="RDS-UTIL" Name="Core_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="Core_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="Core.dcp"/>
+  <File Type="BITSTR-MSK" Name="Core.msk"/>
+  <File Type="ROUTE-CLK" Name="Core_clock_utilization_routed.rpt"/>
+  <File Type="RDI-RDI" Name="Core.vdi"/>
+  <File Type="ROUTE-BUS-SKEW" Name="Core_bus_skew_routed.rpt"/>
+  <File Type="PA-DCP" Name="Core.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="Core_bus_skew_postroute_physopted.pb"/>
+  <File Type="BG-BIT" Name="Core.bit"/>
+  <File Type="BG-DRC" Name="Core.drc"/>
+  <File Type="BG-BGN" Name="Core.bgn"/>
+  <File Type="BG-BIN" Name="Core.bin"/>
+  <File Type="BITSTR-RBT" Name="Core.rbt"/>
+  <File Type="BITSTR-NKY" Name="Core.nky"/>
+  <File Type="BITSTR-BMM" Name="Core_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="Core.mmi"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="Core_methodology_drc_routed.rpt"/>
+  <File Type="BITSTR-SYSDEF" Name="Core.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Core_methodology_drc_routed.pb"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="Core.ltx"/>
+  <File Type="BOOT-PDI-FILE" Name="Core_boot.pdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="NPI_FILE" Name="Core.npi"/>
+  <File Type="OPT-DRC" Name="Core_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="Core.hwdef"/>
+  <File Type="PLACE-IO" Name="Core_io_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="Core_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="Core_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="Core_control_sets_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="Core_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-DRC" Name="Core_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="Core_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="Core_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="Core_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="Core_route_status.pb"/>
+  <File Type="ROUTE-DCP" Name="Core_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="Core_routed_error.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="Core_routed_bb.dcp"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="Core_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="Core_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="Core_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="Core_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="Core_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="Core_bus_skew_routed.rpx"/>
+  <File Type="OPT-DCP" Name="Core_opt.dcp"/>
+  <File Type="PLACE-DCP" Name="Core_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="Core_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="Core_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="Core_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="Core_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Core_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Core_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="Core_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Core_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="Core_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="Core_bus_skew_postroute_physopted.rpx"/>
+  <File Type="ROUTE-DRC-RPX" Name="Core_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="Core_methodology_drc_routed.rpx"/>
+  <File Type="PDI-FILE" Name="Core.pdi"/>
+  <File Type="PL-PDI-FILE" Name="Core_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="Core.rcfi"/>
+  <File Type="CFI_FILE" Name="Core.cfi"/>
+  <File Type="RNPI_FILE" Name="Core.rnpi"/>
+  <File Type="RBD_FILE" Name="Core.rbd"/>
+  <File Type="ROUTE-RQS" Name="Core_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="Core_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/ALU.sv">
@@ -157,7 +222,16 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
-    <Step Id="synth_design"/>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
   </Strategy>
 </GenRun>

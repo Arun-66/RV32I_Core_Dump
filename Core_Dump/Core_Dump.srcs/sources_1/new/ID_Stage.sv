@@ -20,8 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ID_Stage#(parameter Inst_Size= 32) (input logic [Inst_Size-1:0]Inst,
-input logic wr_en,reset,
+module ID_Stage#(parameter Inst_Size= 32) (
+input logic [Inst_Size-1:0]Inst,
+input logic wr_en,
+input logic Imm_Sel,
 input logic[Inst_Size-1:0] write_data,
 output logic [Inst_Size-1:0] rs1_data,rs2_data,
 output logic [Inst_Size-1:0]Ext_Imm,
@@ -29,11 +31,13 @@ output logic[6:0] func7,
 output logic[2:0]func3,
 output logic[6:0] opcode
 );
+
 wire[4:0] rs1,rs2,rd;
 wire[11:0] Imm;
 wire[19:0] Imm20;
 
 Inst_Decoder Decoder(Inst,rs1,rs2,rd,Imm,Imm20,func7,func3,opcode);
-Sign_Extender #(32) Ext(Imm,Ext_Imm);
-Reg_File#(32)Reg_file(rs1,rs2,rd,wr_en,reset,write_data,rs1_data,rs2_data);
+Sign_Extender #(32) Ext(Imm,Imm20,Imm_Sel,Ext_Imm);
+Reg_File#(32)Reg_file(rs1,rs2,rd,wr_en,write_data,rs1_data,rs2_data);
+
 endmodule

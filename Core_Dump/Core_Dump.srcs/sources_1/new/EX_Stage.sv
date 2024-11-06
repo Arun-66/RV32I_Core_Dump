@@ -21,16 +21,19 @@
 
 
 module EX_Stage#(parameter Size = 32)(
-    input [Size-1:0] rs1_data,rs2_data,EX_Imm,
-    input ALU_Src,Branch_Control,
+    input [Size-1:0] rs1_data,rs2_data,EX_Imm,PC_Curr,
+    input PC_Src,ALU_Src,Branch_Control,
     input [3:0]ALU_Control,
     output Branch_out,
-    output [Size-1:0]ALU_out
+    output [Size-1:0]ALU_out,Added_PC_from_Branch
     );
 wire [Size-1:0]data2_to_ALU;
+wire [Size-1:0]data1_to_ALU;
 wire flag;
-MUX #(32) Imm_Sel(rs2_data,EX_Imm,ALU_Src,data2_to_ALU);
-ALU #(32) alu(rs1_data,data2_to_ALU,ALU_Control,ALU_out,flag);
+MUX #(Size) PC_Sel(rs1_data,PC_Curr,PC_Src,data1_to_ALU);
+MUX #(Size) Imm_Sel(rs2_data,EX_Imm,ALU_Src,data2_to_ALU);
+ALU #(Size) alu(data1_to_ALU,data2_to_ALU,ALU_Control,ALU_out,flag);
 assign Branch_out = Branch_Control & flag;
+HA_Param #(Size) add(.a(PC_Curr),.b((EX_Imm<<1)),.sum(Added_PC_from_Branch));
 
 endmodule

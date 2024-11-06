@@ -53,24 +53,24 @@ always@(*)begin
             out = a ^ b;
             Zero_Flag = 1'b0;
         end
-        4'b0101:begin    //Sub
-            out = a - b;
-            Zero_Flag = 1'b0;
-        end
-        4'b0110:begin    //Shift Right Logical SRL
+        4'b0101:begin    //Shift Right Logical SRL
             out = a >> b;
             Zero_Flag = 1'b0;
         end
-        4'b0111:begin    //Shift Right Arith  SRA
+        4'b0110:begin    //Shift Right Arith  SRA
             out = a >>> b;
             Zero_Flag = 1'b0;
         end
-        4'b1000: begin   //Shift Left Logical SLL
+        4'b0111: begin   //Shift Left Logical SLL
             out = a << b;
             Zero_Flag = 0;
         end
-        4'b1001:begin    //Set less than
+        4'b1000:begin    //Set less than
             out = (as < bs) ? {Size{1'b0}} | 1 : {Size{1'b1}};
+            Zero_Flag = 1'b0;
+        end
+        4'b1001:begin    //Set less than Unsigned
+            out = (a < b) ? {Size{1'b0}} | 1 : {Size{1'b1}};
             Zero_Flag = 1'b0;
         end
         4'b1010:begin    //BEQ

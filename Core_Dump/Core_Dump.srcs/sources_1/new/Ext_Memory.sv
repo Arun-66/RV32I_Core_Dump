@@ -27,23 +27,25 @@ module Ext_Memory#(parameter Size = 32)(
     input read_en,write_en,
     output reg [Size-1:0] Data_Out
     );
-reg [7:0] Mem [0:2**Size];
+reg [31:0] Mem [0:(2**Size)-1];
 
-always@(*)begin
+always@(posedge write_en or posedge read_en)begin
+    Data_Out = 0;
     if(read_en)begin
         case(data_type)
             2'b00:begin  //word
-               Data_Out = {Mem[Read_address+3],Mem[Read_address+2],Mem[Read_address+1],Mem[Read_address]}; 
+               Data_Out = Mem[Read_address]; 
             end
             2'b01:begin  //half-word
-               Data_Out = {16'b0,Mem[Read_address+1],Mem[Read_address]};
+               Data_Out = {16'b0,Mem[Read_address][15:0]};
             end
             2'b10:begin  //byte
-               Data_Out = {24'b0,Mem[Read_address]};
+               Data_Out = {24'b0,Mem[Read_address][7:0]};
             end
             2'b11:begin  //byte
                Data_Out = {24'b0,Mem[Read_address]};
-            end            
+            end     
+            default: Data_Out = 0;       
         endcase    
     end
     else if(write_en)begin

@@ -31,6 +31,12 @@ output logic [6:0] opcode
 );
 
 always @(*) begin
+    Imm = 0;
+    Imm20 = 0;
+    func7 = 0;
+    func3 = 0;
+    opcode = 0;
+    rs1 = 0;rs2=0;rd=0;
     case(Inst[6:0])
         7'b0110011: begin//R-type
             func7  = Inst[31:25];
@@ -71,6 +77,14 @@ always @(*) begin
             Imm20[10:1] = Inst[30:21];
             Imm20[11] = Inst[20];
             Imm20[19:12] = Inst[19:12];
+        end
+        default:begin
+            Imm = 0;
+            Imm20 = 0;
+            func7 = 0;
+            func3 = 0;
+            opcode = 0;
+            rs1 = 0; rs2=0 ;rd=0;    
         end
     endcase
 end
