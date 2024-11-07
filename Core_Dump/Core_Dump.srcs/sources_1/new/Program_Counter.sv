@@ -25,7 +25,7 @@ module Program_Counter#(parameter AddrSize = 32)(
     input logic clk,reset,
     output reg [AddrSize-1:0] PC_Curr
 );
-always_ff@(posedge clk)begin
+always_ff@(posedge clk or posedge reset)begin
     if(reset)begin
         PC_Curr <= 0;
     end

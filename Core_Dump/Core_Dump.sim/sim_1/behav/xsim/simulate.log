@@ -1,4 +1,3 @@
 Time resolution is 1 ps
-ERROR: Out of bounds address specified in datafile. Read terminated.
-Instruction =          x
-$stop called at time : 21 ns : File "C:/Users/arun/Core_Dump/Core_Dump.srcs/sim_1/new/IF_TB.sv" Line 37
+Instruction = 10010113, PC_Temp = 00000002
+$stop called at time : 115 ns : File "C:/Users/arun/Desktop/Projects/RV32I_Core/RV32I_Core_Dump/Core_Dump/Core_Dump.srcs/sim_1/new/IF_TB.sv" Line 51

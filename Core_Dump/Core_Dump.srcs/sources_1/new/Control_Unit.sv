@@ -23,7 +23,7 @@
 module Control_Unit(
     input [2:0] func3,
     input [6:0] opcode,
-    output reg REG_Write,PC_Src,ALU_Src,MEM_Read,Mem_Write,Branch,Imm_Sel,Jump_Sel,
+    output reg REG_Write,PC_Src,ALU_Src,MEM_Read,Mem_Write,Branch,Imm_Sel,Jump_Sel,jal,
     output reg [1:0]Mem_to_REG,Mem_Read_Type
 );
 
@@ -40,6 +40,7 @@ always @(*)begin
             Imm_Sel = 0;
             PC_Src = 0;
             Jump_Sel = 0;
+            jal = 0;
         end
         7'b0010011:begin    //I-type
             REG_Write = 1;
@@ -52,6 +53,7 @@ always @(*)begin
             Imm_Sel = 0;
             PC_Src = 0;
             Jump_Sel = 0;
+            jal = 0;
         end
         7'b0000011:begin    //Load-type
             REG_Write = 1;
@@ -63,6 +65,7 @@ always @(*)begin
             Imm_Sel = 0;
             PC_Src = 0;
             Jump_Sel = 0;
+            jal = 0;
             if(func3 == 0)  //load byte
                 Mem_Read_Type = 2'b10;
             else if(func3 == 1)  //load half
@@ -86,6 +89,7 @@ always @(*)begin
             Imm_Sel = 0;
             PC_Src = 0;
             Jump_Sel = 0;
+            jal = 0;
             if(func3 == 0)  //load byte
                 Mem_Read_Type = 2'b10;
             else if(func3 == 1)  //load half
@@ -109,6 +113,7 @@ always @(*)begin
             Imm_Sel = 0;
             Mem_Read_Type = 0;
             PC_Src = 0;
+            jal = 0;
             Jump_Sel = 0;
         end
         7'b1101111:begin    //J-type
@@ -122,6 +127,7 @@ always @(*)begin
             Mem_Read_Type = 0;
             Imm_Sel = 1;
             Jump_Sel = 1;
+            jal = 1;
         end
         7'b1100111:begin    //JAL-R
             REG_Write = 1;
@@ -134,6 +140,7 @@ always @(*)begin
             Mem_Read_Type = 0;
             Imm_Sel = 1;
             Jump_Sel = 1;
+            jal = 0;
         end
         7'b0110111:begin    //LUI
             REG_Write = 1;
@@ -146,6 +153,7 @@ always @(*)begin
             Imm_Sel = 0;
             Jump_Sel = 0;
             PC_Src = 0;
+            jal = 0;
         end
         7'b0010111:begin    //auipc
             REG_Write = 0;
@@ -158,6 +166,7 @@ always @(*)begin
             Mem_Read_Type = 0;
             Imm_Sel = 1;
             Jump_Sel = 1;
+            jal = 0;
         end
         default:begin
             REG_Write = 0;
@@ -170,6 +179,7 @@ always @(*)begin
             PC_Src = 0;
             Imm_Sel = 0;
             Jump_Sel = 0;
+            jal = 0;
         end
     endcase
 end

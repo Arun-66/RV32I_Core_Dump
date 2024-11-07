@@ -25,5 +25,5 @@ module MUX #(parameter N = 32)(input [N-1:0]a,b,
                                output [N-1:0] y
                                 );
 //assign y = (~Sel&a) | (Sel&b);
-assign y = Sel ? a:b;             
+assign y = Sel ? b:a;             
 endmodule
