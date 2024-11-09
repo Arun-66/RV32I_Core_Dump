@@ -87,7 +87,7 @@ always@(*)begin
         5'b10010: //rem U
             out = a % b;
         default:
-            out = 0;
+            out = 1;
     endcase
 end    
 endmodule

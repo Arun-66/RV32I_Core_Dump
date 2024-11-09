@@ -27,6 +27,7 @@ module ALU_Control(
     output reg [4:0] ALU_Ctrl
     );
 always @(*)begin
+ALU_Ctrl = 0;
 if(opcode == 7'b0110011 | opcode == 7'b0010011)
     if(func7 == 7'b0000001)begin
         case(func3)

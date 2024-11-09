@@ -23,7 +23,7 @@
 module EX_Stage#(parameter Size = 32)(
     input [Size-1:0] rs1_data,rs2_data,EX_Imm,PC_Curr,
     input PC_Src,ALU_Src,Branch_Control,
-    input [3:0]ALU_Control,
+    input [4:0]ALU_Control,
     input [2:0]func3,
     output Branch_out,
     output [Size-1:0]ALU_out,Added_PC_from_Branch

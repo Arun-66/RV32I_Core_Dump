@@ -46,7 +46,7 @@ always @(*) begin
             rd     = Inst[11:7];
             opcode = Inst[6:0];
         end
-        7'b0010011 | 7'b0000011 | 7'b1100111: begin  //Immediate and Load and JALR
+        7'b0010011: begin  //Immediate
             Imm    = Inst[31:20];
             rs1    = Inst[19:15];
             func3  = Inst[14:12];
@@ -60,11 +60,13 @@ always @(*) begin
             Imm    = {Inst[31:25],Inst[11:7]}; 
             opcode = Inst[6:0];
         end
-        7'b1100011: begin//B-type
+        7'b1100011: begin // B-type
             rs2    = Inst[24:20];
             rs1    = Inst[19:15];
             func3  = Inst[14:12];
-            Imm = {Inst[31], Inst[25:20], Inst[7], Inst[11:8]}; 
+            // B-Type Immediate Extraction
+                   //12       11        10:5        11-8
+            Imm = {Inst[31], Inst[7] ,Inst[30:25], Inst[11:8]};   // opcode = Inst[6:0];
             opcode = Inst[6:0];
         end
         7'b0110111 | 7'b0010111 : begin//U-type
@@ -72,11 +74,13 @@ always @(*) begin
             rd     = Inst[11:7];
             opcode = Inst[6:0];
         end
-        7'b0010111: begin // J-type
+        7'b1101111: begin // J-type
             Imm20[19] = {Inst[31]};
             Imm20[10:1] = Inst[30:21];
             Imm20[11] = Inst[20];
             Imm20[19:12] = Inst[19:12];
+            rd     = Inst[11:7];
+            opcode = Inst[6:0];
         end
         default:begin
             Imm = 0;

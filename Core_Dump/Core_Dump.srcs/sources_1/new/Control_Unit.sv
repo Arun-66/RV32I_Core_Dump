@@ -24,10 +24,22 @@ module Control_Unit(
     input [2:0] func3,
     input [6:0] opcode,
     output reg REG_Write,PC_Src,ALU_Src,MEM_Read,Mem_Write,Branch,Imm_Sel,Jump_Sel,jal,
-    output reg [1:0]Mem_to_REG,Mem_Read_Type
+    output reg [1:0]Mem_to_REG,
+    output reg [2:0]Mem_Read_Type
 );
 
 always @(*)begin
+    REG_Write = 0;
+    ALU_Src = 0;
+    MEM_Read = 0;
+    Mem_Write = 0;
+    Mem_to_REG = 0;
+    Branch = 0;
+    Mem_Read_Type = 0;
+    PC_Src = 0;
+    Imm_Sel = 0;
+    Jump_Sel = 0;
+    jal = 0;
     case(opcode[6:0])
         7'b0110011:begin    //R-type
             REG_Write = 1;
@@ -67,15 +79,15 @@ always @(*)begin
             Jump_Sel = 0;
             jal = 0;
             if(func3 == 0)  //load byte
-                Mem_Read_Type = 2'b10;
+                Mem_Read_Type = 3'b000;
             else if(func3 == 1)  //load half
-                Mem_Read_Type = 2'b01;
+                Mem_Read_Type = 3'b010;
             else if(func3 == 2)  //load word
-                Mem_Read_Type = 2'b00;
+                Mem_Read_Type = 3'b011;
             else if(func3 == 4)  //unsigned load byte
-                Mem_Read_Type = 2'b11;
+                Mem_Read_Type = 3'b100;
             else if(func3 == 5)  //unsiged load half
-                Mem_Read_Type = 2'b01;
+                Mem_Read_Type = 3'b110;
             else
                 Mem_Read_Type = 0;
         end
@@ -90,16 +102,12 @@ always @(*)begin
             PC_Src = 0;
             Jump_Sel = 0;
             jal = 0;
-            if(func3 == 0)  //load byte
-                Mem_Read_Type = 2'b10;
-            else if(func3 == 1)  //load half
-                Mem_Read_Type = 2'b01;
-            else if(func3 == 2)  //load word
-                Mem_Read_Type = 2'b00;
-            else if(func3 == 4)  //unsigned load byte
-                Mem_Read_Type = 2'b11;
-            else if(func3 == 5)  //unsiged load half
-                Mem_Read_Type = 2'b01;
+            if(func3 == 0)  //store byte
+                Mem_Read_Type = 3'b000;
+            else if(func3 == 1)  //store half
+                Mem_Read_Type = 3'b010;
+            else if(func3 == 2)  //store word
+                Mem_Read_Type = 3'b011;
             else
                 Mem_Read_Type = 0;
         end
@@ -169,18 +177,18 @@ always @(*)begin
             jal = 0;
         end
         default:begin
-            REG_Write = 0;
-            ALU_Src = 0;
-            MEM_Read = 0;
-            Mem_Write = 0;
-            Mem_to_REG = 0;
-            Branch = 0;
-            Mem_Read_Type = 0;
-            PC_Src = 0;
-            Imm_Sel = 0;
-            Jump_Sel = 0;
-            jal = 0;
-        end
+                REG_Write = 0;
+                ALU_Src = 0;
+                MEM_Read = 0;
+                Mem_Write = 0;
+                Mem_to_REG = 0;
+                Branch = 0;
+                Mem_Read_Type = 0;
+                PC_Src = 0;
+                Imm_Sel = 0;
+                Jump_Sel = 0;
+                jal = 0;
+    end
     endcase
 end
 endmodule
