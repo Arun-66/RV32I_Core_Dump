@@ -26,10 +26,11 @@ output logic[4:0] rs1,rs2,rd,
 output logic[11:0] Imm,
 output logic[19:0] Imm20,
 output logic[6:0] func7,
+output logic [1:0]strip_func7,
 output logic[2:0]func3, 
 output logic [6:0] opcode
 );
-
+assign strip_func7 = {Inst[30],Inst[25]};
 always @(*) begin
     Imm = 0;
     Imm20 = 0;

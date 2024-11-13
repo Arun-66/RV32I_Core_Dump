@@ -38,9 +38,9 @@ wire [6:0]func7;
 wire [2:0]func3;
 wire REG_Write;
 wire [6:0]opcode;
-
+wire [1:0] strip_func7;
 ID_Stage#(Inst_Size) Instruction_Decode (.Inst(Inst_IF_ID),.wr_en(REG_Write),.Imm_Sel(Imm_Sel),.jal(jal),.write_data(REG_write_data),
-.rs1_data(REG_rs1_data),.rs2_data(REG_rs2_data),.Ext_Imm(Ext_Imm),.func7(func7),.func3(func3),.opcode(opcode),
+.rs1_data(REG_rs1_data),.rs2_data(REG_rs2_data),.Ext_Imm(Ext_Imm),.func7(func7),.strip_func7(strip_func7),.func3(func3),.opcode(opcode),
 .x0(x0),.x1(x1),.x2(x2),.x3(x3),.x4(x4),.x5(x5),.x6(x6),.x7(x7),.x8(x8),.x9(x9),.x10(x10),
 .x11(x11),.x12(x12),.x13(x13),.x14(x14),.x15(x15),.x16(x16),.x17(x17),.x18(x18),.x19(x19),
 .x20(x20),.x21(x21),.x22(x22),.x23(x23),.x24(x24),.x25(x25),.x26(x26),.x27(x27),.x28(x28),
@@ -66,7 +66,7 @@ wire [1:0]Data_wb_control;
 WB_Stage#(Inst_Size) Write_Back(.ALU_Data(ALU_Out),.Mem_Data(Mem_Data_Out),.PC_4(PC_4),
     .Data_wb_control(Data_wb_control),.Data_to_reg(REG_write_data));
 
-ALU_Control ALU_Control_Unit(.func7(func7),.func3(func3),.opcode(opcode),.ALU_Ctrl(ALU_Control));
+ALU_Control ALU_Control_Unit(.strip_func7(strip_func7),.func3(func3),.opcode(opcode),.ALU_Ctrl(ALU_Control));
 
 Control_Unit Ctrl_Unit(.func3(func3),.opcode(opcode),
 .REG_Write(REG_Write),.PC_Src(PC_Src),.ALU_Src(ALU_Src),.MEM_Read(read_en),.Mem_Write(write_en),.Mem_to_REG(Data_wb_control),

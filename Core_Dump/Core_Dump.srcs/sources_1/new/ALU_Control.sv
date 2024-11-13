@@ -21,7 +21,7 @@
 
 
 module ALU_Control(
-    input [6:0] func7,
+    input [1:0]strip_func7,
     input [2:0] func3,
     input [6:0] opcode,
     output reg [4:0] ALU_Ctrl
@@ -29,7 +29,7 @@ module ALU_Control(
 always @(*)begin
 ALU_Ctrl = 0;
 if(opcode == 7'b0110011 | opcode == 7'b0010011)
-    if(func7 == 7'b0000001)begin
+    if(strip_func7 == 2'b01)begin  // m-type
         case(func3)
             3'b000:
                 ALU_Ctrl = 5'b01011;
@@ -50,9 +50,9 @@ if(opcode == 7'b0110011 | opcode == 7'b0010011)
         endcase
     end
     else begin
-        case(func3)
+        case(func3) 
             3'b000:begin    //ADD_SUB
-                if(func7 == 7'b0100000)
+                if(strip_func7 == 7'b10)
                     ALU_Ctrl = 5'b00001;
                 else
                     ALU_Ctrl = 5'b00000;
@@ -66,7 +66,7 @@ if(opcode == 7'b0110011 | opcode == 7'b0010011)
             3'b001:    //SLL
                 ALU_Ctrl = 5'b0111;
             3'b101:begin    //SR
-                if(func7 == 7'b0100000)
+                if(strip_func7 == 7'b10)
                     ALU_Ctrl= 5'b00110;
                 else
                     ALU_Ctrl = 5'b00101;
