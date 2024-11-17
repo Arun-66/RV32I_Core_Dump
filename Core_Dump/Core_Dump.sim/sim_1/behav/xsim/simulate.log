@@ -1,2 +1,2 @@
 Time resolution is 1 ps
-$stop called at time : 505 ns : File "C:/Users/arun/Desktop/Projects/RV32I_Core/RV32I_Core_Dump/Core_Dump/Core_Dump.srcs/sim_1/new/Core_tb.sv" Line 42
+$stop called at time : 51 ns : File "C:/Users/arun/Desktop/Projects/RV32I_Core/RV32I_Core_Dump/Core_Dump/Core_Dump.srcs/sim_1/new/Mem_tb.sv" Line 52

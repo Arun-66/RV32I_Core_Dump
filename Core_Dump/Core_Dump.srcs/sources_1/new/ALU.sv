@@ -31,10 +31,10 @@ reg [(2*Size)-1:0] product;
 always@(*)begin
     case(Control)
         5'b00000: begin   //Add
-            out = a + b;
+            out = as + bs;
         end
         5'b00001:begin    //Sub
-            out = a - b;
+            out = as - bs;
         end
         5'b00010:begin    //AND
             out = a & b;
@@ -61,7 +61,7 @@ always@(*)begin
             out = (a < b) ? {Size{1'b0}} | 1 : {Size{1'b1}};
         end
         5'b01010:    //auipc & lui
-            out = a + (b<<12);
+            out = as + (bs<<12);
         5'b01011: begin// Mul
             product = (as * bs);
             out = product[Size-1:0];

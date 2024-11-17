@@ -27,27 +27,26 @@ module Ext_Memory#(parameter Size = 32)(
     input read_en,write_en,
     output reg [Size-1:0] Data_Out
     );
-reg [31:0] Mem [0:(2**Size)-1];
+reg [7:0] Mem [0:(2**Size)-1];
 
-always@(posedge write_en or posedge read_en)begin
+always@(*)begin
     Data_Out = 0;
-    
     if(read_en)begin
         case(data_type)
             3'b000:begin  //load byte signed
-               Data_Out = {{24{Mem[Read_address][7]}},Mem[Read_address][7:0]};
+               Data_Out = {{24{Mem[Read_address][7]}},Mem[Read_address]};
             end
             3'b010:begin  //half-word signed
-               Data_Out = {{16{Mem[Read_address][15]}},Mem[Read_address][15:0]};
+               Data_Out = {{16{Mem[Read_address][15]}},Mem[Read_address+1],Mem[Read_address]};
             end
             3'b011:begin  //word
-               Data_Out = Mem[Read_address][7:0];
+               Data_Out = {Mem[Read_address+3],Mem[Read_address+2],Mem[Read_address+1],Mem[Read_address]};
             end
             3'b100:begin  //byte Unsigned
                Data_Out = {24'b0,Mem[Read_address]};
             end
             3'b110:begin  //half-word Unsigned
-               Data_Out = {16'b0,Mem[Read_address]};
+               Data_Out = {16'b0,Mem[Read_address+1],Mem[Read_address]};
             end     
             default: Data_Out = 0;       
         endcase    
@@ -67,6 +66,12 @@ always@(posedge write_en or posedge read_en)begin
                 Mem[Read_address+1] = Write_data[15:8];
                 Mem[Read_address] = Write_data[7:0];
             end
+            default:begin
+                Mem[Read_address+3] = Write_data[31:24];
+                Mem[Read_address+2] = Write_data[23:16];
+                Mem[Read_address+1] = Write_data[15:8];
+                Mem[Read_address] = Write_data[7:0];
+                end
         endcase
     end
     else 

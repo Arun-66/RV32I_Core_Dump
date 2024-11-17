@@ -164,7 +164,7 @@ always @(*)begin
             jal = 0;
         end
         7'b0010111:begin    //auipc
-            REG_Write = 0;
+            REG_Write = 1;
             ALU_Src = 1;
             PC_Src = 1;
             MEM_Read = 0;
@@ -173,7 +173,7 @@ always @(*)begin
             Branch = 0;
             Mem_Read_Type = 0;
             Imm_Sel = 1;
-            Jump_Sel = 1;
+            Jump_Sel = 0;
             jal = 0;
         end
         default:begin
